@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Sistema Inventario</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#317EFB"/>
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js")
+        .then(() => console.log("✅ Service Worker registrado"))
+        .catch(err => console.error("❌ Error SW:", err));
+    }
+  </script>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h1 { text-align: center; }
+    .menu { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+    button { padding: 15px; font-size: 16px; border-radius: 10px; cursor: pointer; }
+    .section { margin-top: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { border: 1px solid #ccc; padding: 5px; text-align: center; }
+  </style>
+</head>
+<body>
+  <h1>📦 Sistema Inventario & Ventas</h1>
+  <div class="menu">
+    <button onclick="mostrar('inventario')">📋 Inventario</button>
+    <button onclick="mostrar('ventas')">💰 Ventas</button>
+    <button onclick="mostrar('gastos')">🧾 Gastos</button>
+    <button onclick="generarReporte()">📑 Generar Cierre PDF</button>
+  </div>
+  <div id="inventario" class="section" style="display:none"></div>
+  <div id="ventas" class="section" style="display:none"></div>
+  <div id="gastos" class="section" style="display:none"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
